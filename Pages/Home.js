@@ -1,5 +1,13 @@
 import React from 'react';
-import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Share,
+  Button,
+} from 'react-native';
 
 import Colors from '../Constants/colors';
 
@@ -9,6 +17,27 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  async shareLink() {
+    try {
+      const result = await Share.share({
+        url: 'jadeflix.com/luxgenic/2',
+        message: 'jadeflix.com/luxgenic/2',
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   render() {
@@ -25,6 +54,12 @@ export default class Home extends React.Component {
               <Text style={styles.itemCardTitle}>{'Total Sales'}</Text>
               <Text style={styles.itemCardSubTitle}>{'\u20A8 1000'}</Text>
             </View>
+          </View>
+
+          <View style={styles.linkDiv}>
+            <Text>{'jadeflix.com/luxgenic/2'}</Text>
+
+            <Button onPress={() => this.shareLink()} title="Share" />
           </View>
         </GlobalWrapper>
       </SafeAreaView>
@@ -51,6 +86,15 @@ const styles = StyleSheet.create({
   },
   itemCardSubTitle: {
     fontSize: 26,
+  },
+  linkDiv: {
+    padding: 20,
+    width: '90%',
+    backgroundColor: Colors.primaryLight,
+    borderRadius: 20,
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
   },
 });
 
