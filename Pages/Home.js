@@ -74,10 +74,18 @@ const styles = StyleSheet.create({
   itemCard: {
     width: 250,
     margin: 20,
-    borderColor: Colors.primary,
-    borderWidth: 2,
+    backgroundColor: 'white',
     padding: 20,
     borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+
+    elevation: 4,
   },
   itemCardTitle: {
     color: 'rgb(175, 175, 175)',
@@ -97,26 +105,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-
-// .overviewCard {
-// 	width: 250px;
-// 	/* height: 150px; */
-// 	margin: 20px;
-// 	background: #ffffff;
-// 	box-shadow: 0 2px 6px 0 rgba(172, 172, 172, 0.5);
-// 	border-radius: 20px;
-// 	display: flex;
-// 	flex-direction: column;
-// 	justify-content: center;
-// 	padding: 20px;
-// }
-
-// .overviewCard .title {
-// 	color: rgb(175, 175, 175);
-// 	text-transform: uppercase;
-// 	margin-bottom: 30px;
-// }
-
-// .overviewCard .subTitle {
-// 	font-size: 26px;
-// }
