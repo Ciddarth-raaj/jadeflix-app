@@ -1,15 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 
 import Styles from '../Constants/styles';
 
-export default class Home extends React.Component {
+export default class GlobalWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       menu: {
         home: {
           title: 'Overview',
+          selected: false,
+        },
+        products: {
+          title: 'Products',
           selected: false,
         },
       },
@@ -25,7 +29,7 @@ export default class Home extends React.Component {
           <Text style={styles.title}>{menu[tag].title}</Text>
           <View style={Styles.line} />
         </View>
-        <View>{children}</View>
+        <ScrollView style={{height: '100%'}}>{children}</ScrollView>
       </View>
     );
   }
@@ -38,5 +42,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     padding: 20,
+    height: '100%',
   },
 });
