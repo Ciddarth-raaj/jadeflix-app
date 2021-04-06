@@ -1,12 +1,41 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Share,
+} from 'react-native';
 
 import Styles from '../Constants/styles';
+import Colors from '../Constants/colors';
 
 export default class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  async shareLink() {
+    try {
+      const result = await Share.share({
+        url: 'jadeflix.com/luxgenic/2',
+        message: 'jadeflix.com/luxgenic/2',
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   render() {
@@ -31,6 +60,12 @@ export default class ProductCard extends React.Component {
             </Text>
           </View>
         </View>
+
+        <TouchableOpacity
+          style={styles.shareButton}
+          onPress={() => this.shareLink()}>
+          <Text>Share</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -56,8 +91,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
   },
   image: {
-    width: 130,
-    height: 130,
+    width: 100,
+    height: 100,
     borderRadius: 20,
   },
   innerWrapper: {
@@ -65,7 +100,7 @@ const styles = StyleSheet.create({
   },
   contentWrapper: {
     marginLeft: 20,
-    height: 130,
+    height: 100,
     justifyContent: 'space-around',
   },
   priceWrapper: {
@@ -92,5 +127,12 @@ const styles = StyleSheet.create({
   },
   stockRed: {
     color: 'red',
+  },
+  shareButton: {
+    backgroundColor: Colors.primaryLight,
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 10,
+    alignItems: 'center',
   },
 });
