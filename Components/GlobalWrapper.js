@@ -20,18 +20,22 @@ export default class GlobalWrapper extends React.Component {
         home: {
           title: 'Overview',
           selected: false,
+          pageName: 'Home',
         },
         products: {
           title: 'Products',
           selected: false,
+          pageName: 'Products',
         },
         category: {
           title: 'Category',
           selected: false,
+          pageName: 'Category',
         },
         orders: {
           title: 'Orders',
           selected: false,
+          pageName: 'Orders',
         },
       },
     };
@@ -39,13 +43,14 @@ export default class GlobalWrapper extends React.Component {
 
   render() {
     const {menu, navigationVisibility} = this.state;
-    const {children, tag} = this.props;
+    const {children, tag, navigation} = this.props;
     return (
       <View style={styles.wrapper}>
         {navigationVisibility && (
           <NavigationDrawer
             menu={menu}
             setVisibility={v => this.setState({navigationVisibility: v})}
+            navigation={navigation}
           />
         )}
         <TouchableOpacity

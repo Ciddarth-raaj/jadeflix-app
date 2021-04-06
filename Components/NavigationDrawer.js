@@ -20,7 +20,8 @@ export default class NavigationDrawer extends React.Component {
           <Text>{'X'}</Text>
         </TouchableOpacity>
         {Object.keys(menu).map(m => (
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate(menu[m].pageName)}>
             <Text style={styles.menuText}>{menu[m].title}</Text>
           </TouchableOpacity>
         ))}

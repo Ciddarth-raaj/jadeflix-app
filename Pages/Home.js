@@ -43,7 +43,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <GlobalWrapper tag={'home'}>
+        <GlobalWrapper tag={'home'} navigation={this.props.navigation}>
           <View style={styles.itemCardWrapper}>
             <View style={styles.itemCard}>
               <Text style={styles.itemCardTitle}>{'Total Orders'}</Text>
