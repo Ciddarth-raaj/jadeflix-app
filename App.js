@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import Home from './Pages/Home';
 import Products from './Pages/Products';
 import Category from './Pages/Category';
+import Orders from './Pages/Orders';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,6 +13,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <Category />;
+    return <Orders />;
   }
 }

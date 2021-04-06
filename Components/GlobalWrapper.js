@@ -20,6 +20,10 @@ export default class GlobalWrapper extends React.Component {
           title: 'Category',
           selected: false,
         },
+        orders: {
+          title: 'Orders',
+          selected: false,
+        },
       },
     };
   }

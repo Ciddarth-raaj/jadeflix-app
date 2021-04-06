@@ -17,27 +17,6 @@ export default class CategoryCard extends React.Component {
     this.state = {};
   }
 
-  async shareLink() {
-    try {
-      const result = await Share.share({
-        url: 'jadeflix.com/luxgenic/2',
-        message: 'jadeflix.com/luxgenic/2',
-      });
-
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
   render() {
     return (
       <View style={styles.wrapper}>
