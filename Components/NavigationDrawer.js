@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text, Image} from 'react-native';
 
 import Styles from '../Constants/styles';
 import Colors from '../Constants/colors';
@@ -15,9 +15,12 @@ export default class NavigationDrawer extends React.Component {
     return (
       <View style={styles.wrapper}>
         <TouchableOpacity
-          style={styles.closeButton}
+          style={[styles.closeButton, styles.buttonWrapper]}
           onPress={() => setVisibility(false)}>
-          <Text>{'X'}</Text>
+          <Image
+            source={require('../Assets/close.png')}
+            style={{width: '100%', height: '100%', resizeMode: 'contain'}}
+          />
         </TouchableOpacity>
         {Object.keys(menu).map(m => (
           <TouchableOpacity
@@ -50,5 +53,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 220,
     top: 20,
+  },
+  buttonWrapper: {
+    padding: 10,
+    backgroundColor: Colors.primary,
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginBottom: 20,
   },
 });
