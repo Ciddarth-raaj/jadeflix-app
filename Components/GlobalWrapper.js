@@ -1,12 +1,21 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 
 import Styles from '../Constants/styles';
+
+import NavigationDrawer from './NavigationDrawer';
 
 export default class GlobalWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      navigationVisibility: false,
       menu: {
         home: {
           title: 'Overview',
@@ -29,10 +38,20 @@ export default class GlobalWrapper extends React.Component {
   }
 
   render() {
-    const {menu} = this.state;
+    const {menu, navigationVisibility} = this.state;
     const {children, tag} = this.props;
     return (
       <View style={styles.wrapper}>
+        {navigationVisibility && (
+          <NavigationDrawer
+            menu={menu}
+            setVisibility={v => this.setState({navigationVisibility: v})}
+          />
+        )}
+        <TouchableOpacity
+          onPress={() => this.setState({navigationVisibility: true})}>
+          <Text>{'Open'}</Text>
+        </TouchableOpacity>
         <View>
           <Text style={styles.title}>{menu[tag].title}</Text>
           <View style={Styles.line} />
@@ -50,6 +69,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     padding: 20,
-    height: '100%',
+    // height: '100%',
   },
 });
