@@ -64,7 +64,7 @@ export default class GlobalWrapper extends React.Component {
           />
         </TouchableOpacity>
         <View>
-          <Text style={styles.title}>{menu[tag].title}</Text>
+          <Text style={styles.title}>{menu[tag]?.title}</Text>
           <View style={Styles.line} />
         </View>
         <ScrollView style={{height: '100%'}}>{children}</ScrollView>

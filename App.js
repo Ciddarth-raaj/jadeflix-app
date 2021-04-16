@@ -9,6 +9,7 @@ import Home from './Pages/Home';
 import Products from './Pages/Products';
 import Category from './Pages/Category';
 import Orders from './Pages/Orders';
+import CreateProduct from './Pages/CreateProduct';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -33,12 +34,10 @@ export default class App extends React.Component {
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{title: 'Welcome'}}
-          />
+          <Stack.Screen name="CreateProduct" component={CreateProduct} />
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Products" component={Products} />
+          {/* <Stack.Screen name="CreateProduct" component={CreateProduct} /> */}
           <Stack.Screen name="Category" component={Category} />
           <Stack.Screen name="Orders" component={Orders} />
         </Stack.Navigator>

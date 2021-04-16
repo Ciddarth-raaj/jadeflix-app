@@ -22,4 +22,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 13,
   },
+  inputBox: {
+    width: '100%',
+    height: 40,
+    backgroundColor: '#efefef',
+    borderRadius: 9,
+    marginBottom: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
 });
