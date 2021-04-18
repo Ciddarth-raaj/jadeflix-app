@@ -26,7 +26,9 @@ export default class Products extends React.Component {
     return (
       <SafeAreaView>
         <GlobalWrapper tag={'products'} navigation={this.props.navigation}>
-          <TouchableOpacity style={Styles.buttonWrapper}>
+          <TouchableOpacity
+            style={Styles.buttonWrapper}
+            onPress={() => this.props.navigation.navigate('CreateProduct')}>
             <Text style={Styles.buttonText}>Add Product</Text>
           </TouchableOpacity>
 

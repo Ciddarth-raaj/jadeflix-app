@@ -34,10 +34,9 @@ export default class App extends React.Component {
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen name="CreateProduct" component={CreateProduct} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Products" component={Products} />
-          {/* <Stack.Screen name="CreateProduct" component={CreateProduct} /> */}
+          <Stack.Screen name="CreateProduct" component={CreateProduct} />
           <Stack.Screen name="Category" component={Category} />
           <Stack.Screen name="Orders" component={Orders} />
         </Stack.Navigator>
