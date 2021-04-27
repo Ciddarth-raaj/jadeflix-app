@@ -42,7 +42,7 @@ export default class GlobalWrapper extends React.Component {
         create_category: {
           title: 'Create Category',
           selected: false,
-          pageName: 'Create',
+          pageName: 'CreateCategory',
         },
       },
     };

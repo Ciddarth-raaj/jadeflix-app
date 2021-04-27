@@ -16,7 +16,7 @@ import * as ImagePicker from 'react-native-image-picker';
 import Colors from '../Constants/colors';
 import Styles from '../Constants/styles';
 
-export default class Create extends React.Component {
+export default class CreateCategory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,12 +49,18 @@ export default class Create extends React.Component {
   render() {
     const {image, imageHandler, photo} = this.state;
     return (
-      <GlobalWrapper tag={'create_category'} navigation={this.props.navigation}>
-        <View style={styles.flex}>
-          <View style={styles.imageContent}>
-            <Text style={styles.imageHeading}> {'Upload Category Image'}</Text>
+      <SafeAreaView>
+        <GlobalWrapper
+          tag={'create_category'}
+          navigation={this.props.navigation}>
+          <View style={styles.flex}>
+            <View style={styles.imageContent}>
+              <Text style={styles.imageHeading}>
+                {' '}
+                {'Upload Category Image'}
+              </Text>
 
-            {/* <TextInput
+              {/* <TextInput
               style={styles.input}
               type="file"
               id="fileUpload"
@@ -63,16 +69,16 @@ export default class Create extends React.Component {
               //   onChange={this.handleImage}
             /> */}
 
-            <View style={styles.label}>
-              <Button
-                title="Choose File"
-                // for="fileUpload"
-                onPress={this.handleImage}
-              />
-              {/* Select file
+              <View style={styles.label}>
+                <Button
+                  title="Choose File"
+                  // for="fileUpload"
+                  onPress={this.handleImage}
+                />
+                {/* Select file
               </Button> */}
-            </View>
-            {/* <View>
+              </View>
+              {/* <View>
               {photo ? (
                 <Image
                   source={{
@@ -93,40 +99,43 @@ export default class Create extends React.Component {
                 )
               )}
             </View> */}
-            <View style={styles.imgHolder}>
-              {image && <Image source={{uri: image.uri}} style={styles.img} />}
-            </View>
+              <View style={styles.imgHolder}>
+                {image && (
+                  <Image source={{uri: image.uri}} style={styles.img} />
+                )}
+              </View>
 
-            {/* <Image
+              {/* <Image
               source={{
                 uri:
                   'https://images.unsplash.com/photo-1619443710840-b0e18ecb6e52?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1030&q=80',
               }}
               style={styles.img}
             /> */}
-          </View>
-          <View style={styles.rightContent}>
-            <TextInput
-              style={styles.inputText}
-              placeholder="Category Name"
-              //   value={category_name}
-              //   onChange={e => this.setState({category_name: e.target.value})}
-            />
-            <TouchableOpacity
-              style={styles.buttonWrapper}
-              //   onPress={() => this.props.navigation.navigate('CreateProduct')}
-            >
-              <Text style={styles.buttonText}> {'Create Category'}</Text>
-            </TouchableOpacity>
-            {/* <button
+            </View>
+            <View style={styles.rightContent}>
+              <TextInput
+                style={styles.inputText}
+                placeholder="Category Name"
+                //   value={category_name}
+                //   onChange={e => this.setState({category_name: e.target.value})}
+              />
+              <TouchableOpacity
+                style={styles.buttonWrapper}
+                //   onPress={() => this.props.navigation.navigate('CreateProduct')}
+              >
+                <Text style={styles.buttonText}> {'Create Category'}</Text>
+              </TouchableOpacity>
+              {/* <button
 							className={styles.button}
 							onClick={() => this.checkData()}
 						>
 							{"Create Category"}
 						</button> */}
+            </View>
           </View>
-        </View>
-      </GlobalWrapper>
+        </GlobalWrapper>
+      </SafeAreaView>
     );
   }
 }
