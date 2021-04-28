@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   View,
@@ -21,7 +21,6 @@ export default class CreateCategory extends React.Component {
     super(props);
     this.state = {
       image: null,
-      photo: true,
     };
   }
 
@@ -35,19 +34,8 @@ export default class CreateCategory extends React.Component {
     });
   };
 
-  imageHandler = e => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        this.setState({image: reader.result});
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-    this.setState({imageFile: e.target.files[0]});
-  };
-
   render() {
-    const {image, imageHandler, photo} = this.state;
+    const {image} = this.state;
     return (
       <SafeAreaView>
         <GlobalWrapper
@@ -78,40 +66,12 @@ export default class CreateCategory extends React.Component {
                 {/* Select file
               </Button> */}
               </View>
-              {/* <View>
-              {photo ? (
-                <Image
-                  source={{
-                    uri:
-                      'https://images.unsplash.com/photo-1619443710840-b0e18ecb6e52?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1030&q=80',
-                  }}
-                  style={styles.img}
-                />
-              ) : (
-                image && (
-                  <Image
-                    source={{uri: image.uri}}
-                    style={styles.img}
-                    onPress={this.setState({
-                      photo: false,
-                    })}
-                  />
-                )
-              )}
-            </View> */}
+
               <View style={styles.imgHolder}>
                 {image && (
                   <Image source={{uri: image.uri}} style={styles.img} />
                 )}
               </View>
-
-              {/* <Image
-              source={{
-                uri:
-                  'https://images.unsplash.com/photo-1619443710840-b0e18ecb6e52?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1030&q=80',
-              }}
-              style={styles.img}
-            /> */}
             </View>
             <View style={styles.rightContent}>
               <TextInput
@@ -126,12 +86,6 @@ export default class CreateCategory extends React.Component {
               >
                 <Text style={styles.buttonText}> {'Create Category'}</Text>
               </TouchableOpacity>
-              {/* <button
-							className={styles.button}
-							onClick={() => this.checkData()}
-						>
-							{"Create Category"}
-						</button> */}
             </View>
           </View>
         </GlobalWrapper>
