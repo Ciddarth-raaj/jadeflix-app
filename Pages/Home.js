@@ -10,13 +10,29 @@ import {
 } from 'react-native';
 
 import Colors from '../Constants/colors';
+import '../Constants/variables';
+
+import StoreHelper from '../Helper/store';
 
 import GlobalWrapper from '../Components/GlobalWrapper';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {count: 0, total_sales: 0};
+    global.config.accessToken =
+      'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiYWRtaW4iLCJzdG9yZV9pZCI6MSwiaWF0IjoxNjE5OTgwODA3LCJleHAiOjE2MjI1NzI4MDd9.G9ezcGAW__bqCCdUy4E6OXi0rp-bpvQTe1SFB-iCOZv1OTG4XBDiikLPx22huLCZaab5oIqCh3vMLlPuN-JbjQ';
+  }
+
+  componentDidMount() {
+    StoreHelper.getStatistics()
+      .then(data => {
+        this.setState({count: data.count, total_sales: data.total_sales});
+      })
+      .catch(err => {
+        alert(err);
+        console.log(err);
+      });
   }
 
   async shareLink() {
@@ -41,18 +57,20 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const {total_sales, count} = this.state;
     return (
       <SafeAreaView>
         <GlobalWrapper tag={'home'} navigation={this.props.navigation}>
           <View style={styles.itemCardWrapper}>
             <View style={styles.itemCard}>
               <Text style={styles.itemCardTitle}>{'Total Orders'}</Text>
-              <Text style={styles.itemCardSubTitle}>{'5'}</Text>
+              <Text style={styles.itemCardSubTitle}>{count}</Text>
             </View>
 
             <View style={styles.itemCard}>
               <Text style={styles.itemCardTitle}>{'Total Sales'}</Text>
-              <Text style={styles.itemCardSubTitle}>{'\u20A8 1000'}</Text>
+              <Text
+                style={styles.itemCardSubTitle}>{`\u20A8 ${total_sales}`}</Text>
             </View>
           </View>
 
