@@ -19,7 +19,9 @@ export default class CategoryCard extends React.Component {
 
   render() {
     return (
-      <View style={styles.wrapper}>
+      <TouchableOpacity
+        style={styles.wrapper}
+        onPress={() => this.props.navigation.navigate('OrderDetails')}>
         <Text style={[styles.text, styles.boldText, styles.idText]}>{'1'}</Text>
         <Text style={styles.text}>{`Total Items : ${123}`}</Text>
         <Text
@@ -32,7 +34,7 @@ export default class CategoryCard extends React.Component {
         <Text style={[styles.boldText, styles.timeText, {fontSize: 16}]}>
           {'a month ago'}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

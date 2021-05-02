@@ -47,7 +47,7 @@ export default class Home extends React.Component {
           <View style={styles.itemCardWrapper}>
             <View style={styles.itemCard}>
               <Text style={styles.itemCardTitle}>{'Total Orders'}</Text>
-              <Text style={styles.itemCardSubTitle}>{'4'}</Text>
+              <Text style={styles.itemCardSubTitle}>{'5'}</Text>
             </View>
 
             <View style={styles.itemCard}>

@@ -10,6 +10,8 @@ import Products from './Pages/Products';
 import Category from './Pages/Category';
 import Orders from './Pages/Orders';
 import CreateProduct from './Pages/CreateProduct';
+import CreateCategory from './Pages/CreateCategory';
+import OrderId from './Pages/OrderDetails';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,6 +41,8 @@ export default class App extends React.Component {
           <Stack.Screen name="CreateProduct" component={CreateProduct} />
           <Stack.Screen name="Category" component={Category} />
           <Stack.Screen name="Orders" component={Orders} />
+          <Stack.Screen name="CreateCategory" component={CreateCategory} />
+          <Stack.Screen name="OrderDetails" component={OrderId} />
         </Stack.Navigator>
       </NavigationContainer>
     );
