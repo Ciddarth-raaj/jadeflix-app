@@ -24,20 +24,18 @@ export default class Products extends React.Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <GlobalWrapper tag={'products'} navigation={this.props.navigation}>
-          <TouchableOpacity
-            style={Styles.buttonWrapper}
-            onPress={() => this.props.navigation.navigate('CreateProduct')}>
-            <Text style={Styles.buttonText}>Add Product</Text>
-          </TouchableOpacity>
+      <GlobalWrapper tag={'products'} navigation={this.props.navigation}>
+        <TouchableOpacity
+          style={Styles.buttonWrapper}
+          onPress={() => this.props.navigation.navigate('CreateProduct')}>
+          <Text style={Styles.buttonText}>Add Product</Text>
+        </TouchableOpacity>
 
-          <View style={styles.wrapperStyle}>
-            <ProductCard />
-            <ProductCard />
-          </View>
-        </GlobalWrapper>
-      </SafeAreaView>
+        <View style={styles.wrapperStyle}>
+          <ProductCard />
+          <ProductCard />
+        </View>
+      </GlobalWrapper>
     );
   }
 }

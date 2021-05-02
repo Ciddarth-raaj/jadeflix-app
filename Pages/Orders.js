@@ -24,14 +24,12 @@ export default class Products extends React.Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <GlobalWrapper tag={'orders'} navigation={this.props.navigation}>
-          <View style={styles.wrapperStyle}>
-            <OrderCard navigation={this.props.navigation} />
-            <OrderCard navigation={this.props.navigation} />
-          </View>
-        </GlobalWrapper>
-      </SafeAreaView>
+      <GlobalWrapper tag={'orders'} navigation={this.props.navigation}>
+        <View style={styles.wrapperStyle}>
+          <OrderCard navigation={this.props.navigation} />
+          <OrderCard navigation={this.props.navigation} />
+        </View>
+      </GlobalWrapper>
     );
   }
 }

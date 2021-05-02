@@ -37,18 +37,12 @@ export default class CreateCategory extends React.Component {
   render() {
     const {image} = this.state;
     return (
-      <SafeAreaView>
-        <GlobalWrapper
-          tag={'create_category'}
-          navigation={this.props.navigation}>
-          <View style={styles.flex}>
-            <View style={styles.imageContent}>
-              <Text style={styles.imageHeading}>
-                {' '}
-                {'Upload Category Image'}
-              </Text>
+      <GlobalWrapper tag={'create_category'} navigation={this.props.navigation}>
+        <View style={styles.flex}>
+          <View style={styles.imageContent}>
+            <Text style={styles.imageHeading}> {'Upload Category Image'}</Text>
 
-              {/* <TextInput
+            {/* <TextInput
               style={styles.input}
               type="file"
               id="fileUpload"
@@ -57,39 +51,36 @@ export default class CreateCategory extends React.Component {
               //   onChange={this.handleImage}
             /> */}
 
-              <View style={styles.label}>
-                <Button
-                  title="Choose File"
-                  // for="fileUpload"
-                  onPress={this.handleImage}
-                />
-                {/* Select file
-              </Button> */}
-              </View>
-
-              <View style={styles.imgHolder}>
-                {image && (
-                  <Image source={{uri: image.uri}} style={styles.img} />
-                )}
-              </View>
-            </View>
-            <View style={styles.rightContent}>
-              <TextInput
-                style={styles.inputText}
-                placeholder="Category Name"
-                //   value={category_name}
-                //   onChange={e => this.setState({category_name: e.target.value})}
+            <View style={styles.label}>
+              <Button
+                title="Choose File"
+                // for="fileUpload"
+                onPress={this.handleImage}
               />
-              <TouchableOpacity
-                style={styles.buttonWrapper}
-                //   onPress={() => this.props.navigation.navigate('CreateProduct')}
-              >
-                <Text style={styles.buttonText}> {'Create Category'}</Text>
-              </TouchableOpacity>
+              {/* Select file
+              </Button> */}
+            </View>
+
+            <View style={styles.imgHolder}>
+              {image && <Image source={{uri: image.uri}} style={styles.img} />}
             </View>
           </View>
-        </GlobalWrapper>
-      </SafeAreaView>
+          <View style={styles.rightContent}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Category Name"
+              //   value={category_name}
+              //   onChange={e => this.setState({category_name: e.target.value})}
+            />
+            <TouchableOpacity
+              style={styles.buttonWrapper}
+              //   onPress={() => this.props.navigation.navigate('CreateProduct')}
+            >
+              <Text style={styles.buttonText}> {'Create Category'}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </GlobalWrapper>
     );
   }
 }

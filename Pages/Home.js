@@ -83,28 +83,26 @@ export default class Home extends React.Component {
   render() {
     const {total_sales, count, store_id, store_slug} = this.state;
     return (
-      <SafeAreaView>
-        <GlobalWrapper tag={'home'} navigation={this.props.navigation}>
-          <View style={styles.itemCardWrapper}>
-            <View style={styles.itemCard}>
-              <Text style={styles.itemCardTitle}>{'Total Orders'}</Text>
-              <Text style={styles.itemCardSubTitle}>{count}</Text>
-            </View>
-
-            <View style={styles.itemCard}>
-              <Text style={styles.itemCardTitle}>{'Total Sales'}</Text>
-              <Text
-                style={styles.itemCardSubTitle}>{`\u20A8 ${total_sales}`}</Text>
-            </View>
+      <GlobalWrapper tag={'home'} navigation={this.props.navigation}>
+        <View style={styles.itemCardWrapper}>
+          <View style={styles.itemCard}>
+            <Text style={styles.itemCardTitle}>{'Total Orders'}</Text>
+            <Text style={styles.itemCardSubTitle}>{count}</Text>
           </View>
 
-          <View style={styles.linkDiv}>
-            <Text>{`jadeflix.com/${store_slug}/${store_id}`}</Text>
-
-            <Button onPress={() => this.shareLink()} title="Share" />
+          <View style={styles.itemCard}>
+            <Text style={styles.itemCardTitle}>{'Total Sales'}</Text>
+            <Text
+              style={styles.itemCardSubTitle}>{`\u20A8 ${total_sales}`}</Text>
           </View>
-        </GlobalWrapper>
-      </SafeAreaView>
+        </View>
+
+        <View style={styles.linkDiv}>
+          <Text>{`jadeflix.com/${store_slug}/${store_id}`}</Text>
+
+          <Button onPress={() => this.shareLink()} title="Share" />
+        </View>
+      </GlobalWrapper>
     );
   }
 }

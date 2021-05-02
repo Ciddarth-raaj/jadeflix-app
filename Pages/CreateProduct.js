@@ -27,44 +27,42 @@ export default class CreateProduct extends React.Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <GlobalWrapper tag={'products'} navigation={this.props.navigation}>
-          <TextInput style={[Styles.inputBox]} placeholder={'Product Name'} />
-          <TextInput style={[Styles.inputBox]} placeholder={'MRP'} />
-          <TextInput style={[Styles.inputBox]} placeholder={'Selling Price'} />
-          <TextInput
-            style={[Styles.inputBox, {height: 100, paddingTop: 20}]}
-            placeholder={'Description'}
-            multiline={true}
-            numberOfLines={4}
-          />
-          <ModalDropdown
-            options={[
-              'option 1',
-              'option 2',
-              'option 1',
-              'option 2',
-              'option 1',
-              'option 2',
-              'option 1',
-              'option 2',
-              'option 1',
-              'option 2',
-            ]}
-            isFullWidth={true}
-            onSelect={v => console.log(v)}
-            style={[Styles.inputBox, {justifyContent: 'center'}]}
-          />
+      <GlobalWrapper tag={'products'} navigation={this.props.navigation}>
+        <TextInput style={[Styles.inputBox]} placeholder={'Product Name'} />
+        <TextInput style={[Styles.inputBox]} placeholder={'MRP'} />
+        <TextInput style={[Styles.inputBox]} placeholder={'Selling Price'} />
+        <TextInput
+          style={[Styles.inputBox, {height: 100, paddingTop: 20}]}
+          placeholder={'Description'}
+          multiline={true}
+          numberOfLines={4}
+        />
+        <ModalDropdown
+          options={[
+            'option 1',
+            'option 2',
+            'option 1',
+            'option 2',
+            'option 1',
+            'option 2',
+            'option 1',
+            'option 2',
+            'option 1',
+            'option 2',
+          ]}
+          isFullWidth={true}
+          onSelect={v => console.log(v)}
+          style={[Styles.inputBox, {justifyContent: 'center'}]}
+        />
 
-          <TouchableOpacity
-            style={[
-              Styles.buttonWrapper,
-              {width: '100%', alignItems: 'center', marginTop: 20},
-            ]}>
-            <Text style={Styles.buttonText}>Add Product</Text>
-          </TouchableOpacity>
-        </GlobalWrapper>
-      </SafeAreaView>
+        <TouchableOpacity
+          style={[
+            Styles.buttonWrapper,
+            {width: '100%', alignItems: 'center', marginTop: 20},
+          ]}>
+          <Text style={Styles.buttonText}>Add Product</Text>
+        </TouchableOpacity>
+      </GlobalWrapper>
     );
   }
 }
