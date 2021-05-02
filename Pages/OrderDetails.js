@@ -55,49 +55,51 @@ export default class OrderId extends React.Component {
   render() {
     const {items} = this.state;
     return (
-      <GlobalWrapper tag={'order_id'} navigation={this.props.navigation}>
-        <View style={styles.topContent}>
-          <View style={styles.topContentView}>
-            <Text style={styles.contentText}>
-              {'Customer Name : '}
-              <Text style={styles.contentTextSpan}>Random</Text>
-            </Text>
-            <Text style={styles.contentText}>
-              {'Customer Number : '}
-              <Text style={styles.contentTextSpan}>Random</Text>
-            </Text>
-          </View>
-          <View style={styles.topContentView}>
-            <Text style={styles.contentText}>
-              {'Customer Number : '}
-              <Text style={styles.contentTextSpan}>Address</Text>
-            </Text>
+      <SafeAreaView>
+        <GlobalWrapper tag={'order_id'} navigation={this.props.navigation}>
+          <View style={styles.topContent}>
+            <View style={styles.topContentView}>
+              <Text style={styles.contentText}>
+                {'Customer Name : '}
+                <Text style={styles.contentTextSpan}>Random</Text>
+              </Text>
+              <Text style={styles.contentText}>
+                {'Customer Number : '}
+                <Text style={styles.contentTextSpan}>Random</Text>
+              </Text>
+            </View>
+            <View style={styles.topContentView}>
+              <Text style={styles.contentText}>
+                {'Customer Number : '}
+                <Text style={styles.contentTextSpan}>Address</Text>
+              </Text>
+            </View>
+
+            <View style={styles.topContentView}>
+              <Text style={styles.contentText}>
+                {'Status : '}
+                <Text style={styles.contentTextSpan}>Random</Text>
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.topContentView}>
-            <Text style={styles.contentText}>
-              {'Status : '}
-              <Text style={styles.contentTextSpan}>Random</Text>
-            </Text>
+          <View style={styles.bottomcontent}>
+            <Text>Products</Text>
+            <View style={styles.line} />
+            <View>
+              {items.map(item => (
+                <OrderProductCard
+                  id={item.id}
+                  name={item.name}
+                  price={item.price}
+                  qty={item.qty}
+                  total={item.total}
+                />
+              ))}
+            </View>
           </View>
-        </View>
-
-        <View style={styles.bottomcontent}>
-          <Text>Products</Text>
-          <View style={styles.line} />
-          <View>
-            {items.map(item => (
-              <OrderProductCard
-                id={item.id}
-                name={item.name}
-                price={item.price}
-                qty={item.qty}
-                total={item.total}
-              />
-            ))}
-          </View>
-        </View>
-      </GlobalWrapper>
+        </GlobalWrapper>
+      </SafeAreaView>
     );
   }
 }

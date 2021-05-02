@@ -39,16 +39,6 @@ export default class GlobalWrapper extends React.Component {
           selected: false,
           pageName: 'Orders',
         },
-        create_category: {
-          title: 'Create Category',
-          selected: false,
-          pageName: 'CreateCategory',
-        },
-        order_id: {
-          title: 'Order Id',
-          selected: false,
-          pageName: 'order_id',
-        },
       },
     };
   }

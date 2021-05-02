@@ -27,8 +27,8 @@ export default class Products extends React.Component {
       <SafeAreaView>
         <GlobalWrapper tag={'orders'} navigation={this.props.navigation}>
           <View style={styles.wrapperStyle}>
-            <OrderCard />
-            <OrderCard />
+            <OrderCard navigation={this.props.navigation} />
+            <OrderCard navigation={this.props.navigation} />
           </View>
         </GlobalWrapper>
       </SafeAreaView>
