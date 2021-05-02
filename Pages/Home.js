@@ -19,12 +19,23 @@ import GlobalWrapper from '../Components/GlobalWrapper';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {count: 0, total_sales: 0};
+    this.state = {
+      count: 0,
+      total_sales: 0,
+      store_id: '',
+      store_name: '',
+      store_slug: '',
+    };
     global.config.accessToken =
       'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiYWRtaW4iLCJzdG9yZV9pZCI6MSwiaWF0IjoxNjE5OTgwODA3LCJleHAiOjE2MjI1NzI4MDd9.G9ezcGAW__bqCCdUy4E6OXi0rp-bpvQTe1SFB-iCOZv1OTG4XBDiikLPx22huLCZaab5oIqCh3vMLlPuN-JbjQ';
   }
 
   componentDidMount() {
+    this.getStatistics();
+    this.getStoreData();
+  }
+
+  getStatistics() {
     StoreHelper.getStatistics()
       .then(data => {
         this.setState({count: data.count, total_sales: data.total_sales});
@@ -35,11 +46,24 @@ export default class Home extends React.Component {
       });
   }
 
+  getStoreData() {
+    StoreHelper.getDataAdmin()
+      .then(data => {
+        this.setState({
+          store_id: data.store_id,
+          store_name: data.store_name,
+          store_slug: data.store_slug,
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   async shareLink() {
+    const {store_id, store_slug} = this.state;
     try {
       const result = await Share.share({
-        url: 'jadeflix.com/luxgenic/2',
-        message: 'jadeflix.com/luxgenic/2',
+        url: `jadeflix.com/${store_slug}/${store_id}`,
+        message: `jadeflix.com/${store_slug}/${store_id}`,
       });
 
       if (result.action === Share.sharedAction) {
@@ -57,7 +81,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const {total_sales, count} = this.state;
+    const {total_sales, count, store_id, store_slug} = this.state;
     return (
       <SafeAreaView>
         <GlobalWrapper tag={'home'} navigation={this.props.navigation}>
@@ -75,7 +99,7 @@ export default class Home extends React.Component {
           </View>
 
           <View style={styles.linkDiv}>
-            <Text>{'jadeflix.com/luxgenic/2'}</Text>
+            <Text>{`jadeflix.com/${store_slug}/${store_id}`}</Text>
 
             <Button onPress={() => this.shareLink()} title="Share" />
           </View>
