@@ -119,69 +119,71 @@ export default class Login extends React.Component {
   render() {
     const {loginWithOtp, password, otp, phone} = this.state;
     return (
-      <GlobalWrapper tag={'login'} navigation={this.props.navigation}>
-        <View style={styles.wrapper}>
-          <Text style={styles.heading}>Login</Text>
-          <View style={styles.fieldHolder}>
-            <TextInput
-              style={styles.input}
-              placeholder="Phone"
-              value={phone}
-              keyboardType="numeric"
-              //   onChangeText={phone => this.updatePhone(e.target.value)}
-              onChangeText={value => this.updatePhone(value)}
-            />
-            {loginWithOtp && (
-              <Text style={styles.sendOTPText} onPress={() => this.sendOtp()}>
-                SEND OTP
-              </Text>
+      <SafeAreaView>
+        <GlobalWrapper tag={'login'} navigation={this.props.navigation}>
+          <View style={styles.wrapper}>
+            <Text style={styles.heading}>Login</Text>
+            <View style={styles.fieldHolder}>
+              <TextInput
+                style={styles.input}
+                placeholder="Phone"
+                value={phone}
+                keyboardType="numeric"
+                //   onChangeText={phone => this.updatePhone(e.target.value)}
+                onChangeText={value => this.updatePhone(value)}
+              />
+              {loginWithOtp && (
+                <Text style={styles.sendOTPText} onPress={() => this.sendOtp()}>
+                  SEND OTP
+                </Text>
+              )}
+            </View>
+            {loginWithOtp ? (
+              <TextInput
+                style={styles.input}
+                placeholder="Enter OTP"
+                value={otp}
+                onChangeText={value => this.setState({otp: value})}
+              />
+            ) : (
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                placeholder="Password"
+                value={password}
+                onChangeText={value =>
+                  this.setState({
+                    password: value,
+                  })
+                }
+              />
             )}
-          </View>
-          {loginWithOtp ? (
-            <TextInput
-              style={styles.input}
-              placeholder="Enter OTP"
-              value={otp}
-              onChangeText={value => this.setState({otp: value})}
-            />
-          ) : (
-            <TextInput
-              style={styles.input}
-              secureTextEntry={true}
-              placeholder="Password"
-              value={password}
-              onChangeText={value =>
-                this.setState({
-                  password: value,
-                })
-              }
-            />
-          )}
 
-          <TouchableOpacity
-            style={styles.buttonWrapper}
-            onPress={() => this.checkInput()}>
-            <Text style={Styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-          <View style={styles.bottomContent}>
-            <Text>New to Jadeflix?</Text>
+            <TouchableOpacity
+              style={styles.buttonWrapper}
+              onPress={() => this.checkInput()}>
+              <Text style={Styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+            <View style={styles.bottomContent}>
+              <Text>New to Jadeflix?</Text>
+              <TouchableOpacity>
+                <Text style={styles.textContent}>Create your Account Now</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={() => this.setState({loginWithOtp: !loginWithOtp})}>
+              {loginWithOtp ? (
+                <Text style={styles.bottomText}>Login with Password</Text>
+              ) : (
+                <Text style={styles.bottomText}>Login with OTP</Text>
+              )}
+            </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={styles.textContent}>Create your Account Now</Text>
+              <Text style={styles.bottomText}>Forgot Password</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => this.setState({loginWithOtp: !loginWithOtp})}>
-            {loginWithOtp ? (
-              <Text style={styles.bottomText}>Login with Password</Text>
-            ) : (
-              <Text style={styles.bottomText}>Login with OTP</Text>
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.bottomText}>Forgot Password</Text>
-          </TouchableOpacity>
-        </View>
-      </GlobalWrapper>
+        </GlobalWrapper>
+      </SafeAreaView>
     );
   }
 }

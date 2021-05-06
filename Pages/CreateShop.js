@@ -3,20 +3,19 @@ import {
   SafeAreaView,
   View,
   Text,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
   Share,
   Button,
-  ScrollView,
+  TextInput,
   Image,
 } from 'react-native';
 import GlobalWrapper from '../Components/GlobalWrapper';
-import * as ImagePicker from 'react-native-image-picker';
-import Colors from '../Constants/colors';
 import Styles from '../Constants/styles';
+import Colors from '../Constants/colors';
+import * as ImagePicker from 'react-native-image-picker';
 
-export default class CreateCategory extends React.Component {
+export default class CreateShop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,12 +37,11 @@ export default class CreateCategory extends React.Component {
     const {image} = this.state;
     return (
       <SafeAreaView>
-        <GlobalWrapper
-          tag={'create_category'}
-          navigation={this.props.navigation}>
+        <GlobalWrapper tag={'createshop'} navigation={this.props.navigation}>
           <View style={styles.flex}>
+            <Text style={styles.imageMainHeading}>{'Welcome To Jadeflix'}</Text>
             <View style={styles.imageContent}>
-              <Text style={styles.imageHeading}>{'Upload Category Image'}</Text>
+              <Text style={styles.imageHeading}>{'Upload Store Logo'}</Text>
 
               {/* <TextInput
               style={styles.input}
@@ -73,7 +71,26 @@ export default class CreateCategory extends React.Component {
             <View style={styles.rightContent}>
               <TextInput
                 style={styles.inputText}
-                placeholder="Category Name"
+                placeholder="Store Name"
+                //   value={category_name}
+                //   onChange={e => this.setState({category_name: e.target.value})}
+              />
+              <TextInput
+                style={styles.inputText}
+                placeholder="Store Phone Number"
+                keyboardType="numeric"
+                //   value={category_name}
+                //   onChange={e => this.setState({category_name: e.target.value})}
+              />
+              <TextInput
+                style={styles.inputText}
+                placeholder="Store Owner Name"
+                //   value={category_name}
+                //   onChange={e => this.setState({category_name: e.target.value})}
+              />
+              <TextInput
+                style={styles.inputText}
+                placeholder="Store Email"
                 //   value={category_name}
                 //   onChange={e => this.setState({category_name: e.target.value})}
               />
@@ -81,7 +98,7 @@ export default class CreateCategory extends React.Component {
                 style={styles.buttonWrapper}
                 //   onPress={() => this.props.navigation.navigate('CreateProduct')}
               >
-                <Text style={styles.buttonText}> {'Create Category'}</Text>
+                <Text style={styles.buttonText}> {'Create Shop'}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -126,6 +143,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  imageMainHeading: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: 10,
+    fontSize: 26,
+    marginBottom: 20,
+    marginTop: 20,
   },
 
   label: {
