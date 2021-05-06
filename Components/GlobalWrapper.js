@@ -39,6 +39,11 @@ export default class GlobalWrapper extends React.Component {
           selected: false,
           pageName: 'Orders',
         },
+        login: {
+          title: 'Login',
+          selected: false,
+          pageName: 'Login',
+        },
       },
     };
   }
