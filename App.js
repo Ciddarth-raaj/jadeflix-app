@@ -14,6 +14,7 @@ import CreateCategory from './Pages/CreateCategory';
 import OrderId from './Pages/OrderDetails';
 import Login from './Pages/Login';
 import CreateShop from './Pages/CreateShop';
+import Forgot from './Pages/Forgot';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ export default class App extends React.Component {
           <Stack.Screen name="OrderDetails" component={OrderId} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="CreateShop" component={CreateShop} />
+          <Stack.Screen name="Forgot" component={Forgot} />
         </Stack.Navigator>
       </NavigationContainer>
     );

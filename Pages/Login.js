@@ -178,7 +178,8 @@ export default class Login extends React.Component {
                 <Text style={styles.bottomText}>Login with OTP</Text>
               )}
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Forgot')}>
               <Text style={styles.bottomText}>Forgot Password</Text>
             </TouchableOpacity>
           </View>

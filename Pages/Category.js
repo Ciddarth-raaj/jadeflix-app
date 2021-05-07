@@ -35,6 +35,10 @@ export default class Products extends React.Component {
           <View style={styles.wrapperStyle}>
             <CategoryCard />
             <CategoryCard />
+            <CategoryCard />
+            <CategoryCard />
+            <CategoryCard />
+            <CategoryCard />
           </View>
         </GlobalWrapper>
       </SafeAreaView>
