@@ -18,16 +18,16 @@ export default class CategoryCard extends React.Component {
   }
 
   render() {
+    const {id, name, image} = this.props;
     return (
       <View style={styles.wrapper}>
         <Image
           source={{
-            uri:
-              'https://jadeflix.s3.amazonaws.com/products/flower-nice-9eb474c5-cbb2-431d-91d5-7d6e40809b83.jpg',
+            uri: {image},
           }}
           style={styles.image}
         />
-        <Text style={styles.nameText}>{'Test'}</Text>
+        <Text style={styles.nameText}>{name}</Text>
       </View>
     );
   }

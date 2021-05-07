@@ -18,21 +18,22 @@ export default class CategoryCard extends React.Component {
   }
 
   render() {
+    const {id, total_items, status, total, created_at} = this.props;
     return (
       <TouchableOpacity
         style={styles.wrapper}
         onPress={() => this.props.navigation.navigate('OrderDetails')}>
-        <Text style={[styles.text, styles.boldText, styles.idText]}>{'1'}</Text>
-        <Text style={styles.text}>{`Total Items : ${123}`}</Text>
+        <Text style={[styles.text, styles.boldText, styles.idText]}>{id}</Text>
+        <Text style={styles.text}>{`Total Items : ${total_items}`}</Text>
         <Text
           style={[
             styles.text,
             styles.boldText,
             styles.priceText,
-          ]}>{`\u20A8 ${100}`}</Text>
-        <Text style={[styles.text, styles.boldText]}>{'Pending'}</Text>
+          ]}>{`\u20A8 ${total}`}</Text>
+        <Text style={[styles.text, styles.boldText]}>{status}</Text>
         <Text style={[styles.boldText, styles.timeText, {fontSize: 16}]}>
-          {'a month ago'}
+          {created_at}
         </Text>
       </TouchableOpacity>
     );

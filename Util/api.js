@@ -25,7 +25,7 @@ const custom = axios.create({
 
 // custom.updateToken = token => {
 //   custom.defaults.headers.common['x-access-token'] = token;
-//   // localStorage.setItem("accessToken", token);
+//   localStorage.setItem('accessToken', token);
 // };
 
 export default custom;

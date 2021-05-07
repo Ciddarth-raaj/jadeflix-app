@@ -39,25 +39,32 @@ export default class ProductCard extends React.Component {
   }
 
   render() {
+    const {
+      id,
+      name,
+      mrp,
+      sp,
+      stock,
+      imgLink,
+      setStock,
+      storeDetails,
+    } = this.props;
     return (
       <View style={styles.wrapper}>
         <View style={styles.innerWrapper}>
           <Image
             source={{
-              uri:
-                'https://jadeflix.s3.amazonaws.com/products/flower-nice-9eb474c5-cbb2-431d-91d5-7d6e40809b83.jpg',
+              uri: {imgLink},
             }}
             style={styles.image}
           />
           <View style={styles.contentWrapper}>
-            <Text style={styles.nameText}>{'Test'}</Text>
+            <Text style={styles.nameText}>{name}</Text>
             <View style={styles.priceWrapper}>
-              <Text style={styles.spText}>{'\u20A8 100'}</Text>
-              <Text style={styles.mrpText}>{'\u20A8 100'}</Text>
+              <Text style={styles.spText}>{`\u20A8 ${sp}`}</Text>
+              <Text style={styles.mrpText}>{`\u20A8 ${mrp}`}</Text>
             </View>
-            <Text style={[styles.stockText, styles.stockGreen]}>
-              {'In Stock'}
-            </Text>
+            <Text style={[styles.stockText, styles.stockGreen]}>{stock}</Text>
           </View>
         </View>
 

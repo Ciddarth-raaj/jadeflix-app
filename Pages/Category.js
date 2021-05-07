@@ -16,13 +16,30 @@ import Styles from '../Constants/styles';
 import GlobalWrapper from '../Components/GlobalWrapper';
 import CategoryCard from '../Components/CategoryCard';
 
+import CategoryHelper from '../Helper/category';
+
 export default class Products extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      categories: [],
+    };
   }
 
+  componentDidMount() {
+    this.getCategories();
+  }
+
+  getCategories = () => {
+    CategoryHelper.getAdmin()
+      .then(data => {
+        this.setState({categories: data});
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
+    const {categories} = this.state;
     return (
       <SafeAreaView>
         <GlobalWrapper tag={'category'} navigation={this.props.navigation}>
@@ -33,12 +50,13 @@ export default class Products extends React.Component {
           </TouchableOpacity>
 
           <View style={styles.wrapperStyle}>
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
+            {categories.map(c => (
+              <CategoryCard
+                id={c.category_id}
+                name={c.category_name}
+                image={c.image}
+              />
+            ))}
           </View>
         </GlobalWrapper>
       </SafeAreaView>
