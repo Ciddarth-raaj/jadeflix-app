@@ -84,15 +84,28 @@ export default class Login extends React.Component {
       });
   }
 
-  setDataLogin(data) {
-    localStorage.setItem('tokenAdmin', data.token);
-    localStorage.setItem('store_id', data.store_id);
-    if (data.store_id == null) {
-      window.location = '/admin/create-shop';
-    } else {
-      window.location = '/admin';
+  // setDataLogin(data) {
+  //   localStorage.setItem('tokenAdmin', data.token);
+  //   localStorage.setItem('store_id', data.store_id);
+  //   if (data.store_id == null) {
+  //     window.location = '/admin/create-shop';
+  //   } else {
+  //     window.location = '/admin';
+  //   }
+  // }
+  setDataLogin = async data => {
+    try {
+      await AsyncStorage.setItem('tokenAdmin', data.token);
+      await AsyncStorage.setItem('store_id', data.store_id);
+    } catch (e) {
+      // saving error
     }
-  }
+    if (data.store_id == null) {
+      this.props.navigation.navigate('Orders');
+    } else {
+      this.props.navigation.navigate('CreateCategory');
+    }
+  };
 
   async sendOtp() {
     const {phone} = this.state;
