@@ -20,6 +20,12 @@ export default class CreateShop extends React.Component {
     super(props);
     this.state = {
       image: null,
+      store_name: '',
+      store_owner: '',
+      phone: '',
+      email: '',
+      imageFile: undefined,
+      loading: false,
     };
   }
 
@@ -33,8 +39,106 @@ export default class CreateShop extends React.Component {
     });
   };
 
+  validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  checkValues = async () => {
+    const {
+      profileImg,
+      image,
+      store_name,
+      store_owner,
+      phone,
+      email,
+      imageFile,
+    } = this.state;
+
+    const alertInitText = 'Fill these fields to continue:\n';
+    let alertText = alertInitText;
+
+    if (store_name === '') {
+      alertText += '• Store Name\n';
+    }
+    if (store_owner === '') {
+      alertText += '• Store Owner Name\n';
+    }
+    if (phone === '') {
+      alertText += '• Store Phone Number\n';
+    } else if (phone.length < 10) {
+      alertText += '• Invalid Phone Number\n';
+    }
+    if (email === '') {
+      alertText += '• Store Email\n';
+    } else if (!this.validateEmail(email)) {
+      alertText += '• Invalid Email ID\n';
+    }
+    if (imageFile === undefined) {
+      alertText += '• Store Logo\n';
+    }
+
+    if (alertText !== alertInitText) {
+      alert(alertText);
+      return;
+    }
+
+    try {
+      this.setState({loading: true});
+      const {is_available} = await StoreHelper.preCheck(store_name);
+
+      if (is_available) {
+        const imgLink = await ImageHelper.upload(
+          imageFile,
+          store_name,
+          store_name,
+        );
+
+        const data = {
+          store_name: store_name,
+          store_owner_name: store_owner,
+          store_phone: phone,
+          store_email: email,
+          store_picture: imgLink.remoteUrl,
+        };
+
+        StoreHelper.create(data)
+          .then(data => {
+            if (data.code == 200) {
+              alert('Store Successfully Created!\nLogin to Continue!');
+              localStorage.clear();
+              window.location = '/admin/login';
+            } else {
+              throw 'Error Creating!';
+            }
+          })
+          .catch(err => {
+            console.log(err);
+            alert('Error Creating Shop! Try Again Later!');
+          })
+          .finally(() => this.setState({loading: false}));
+      } else {
+        this.setState({loading: false});
+        alert('Store Name already exists!');
+      }
+    } catch (err) {
+      this.setState({loading: false});
+      alert('Error Creating Shop! Try Again Later!');
+      console.log(err);
+    }
+  };
+
+  updatePhone(phone) {
+    if (
+      phone.length <= 10 &&
+      (parseInt(phone) > 0 || phone == '') &&
+      phone.match('^[0-9]*$')
+    )
+      this.setState({phone: phone});
+  }
+
   render() {
-    const {image} = this.state;
+    const {image, store_name, store_owner, phone, email, loading} = this.state;
     return (
       <SafeAreaView>
         <GlobalWrapper tag={'createshop'} navigation={this.props.navigation}>
@@ -42,15 +146,6 @@ export default class CreateShop extends React.Component {
             <Text style={styles.imageMainHeading}>{'Welcome To Jadeflix'}</Text>
             <View style={styles.imageContent}>
               <Text style={styles.imageHeading}>{'Upload Store Logo'}</Text>
-
-              {/* <TextInput
-              style={styles.input}
-              type="file"
-              id="fileUpload"
-              accept="image/*"
-              name="image-upload"
-              //   onChange={this.handleImage}
-            /> */}
 
               <View style={styles.label}>
                 <Button
@@ -72,32 +167,31 @@ export default class CreateShop extends React.Component {
               <TextInput
                 style={styles.inputText}
                 placeholder="Store Name"
-                //   value={category_name}
-                //   onChange={e => this.setState({category_name: e.target.value})}
+                value={store_name}
+                onChangeText={value => this.setState({store_name: value})}
               />
               <TextInput
                 style={styles.inputText}
                 placeholder="Store Phone Number"
                 keyboardType="numeric"
-                //   value={category_name}
-                //   onChange={e => this.setState({category_name: e.target.value})}
+                value={phone}
+                onChangeText={value => this.updatePhone(value)}
               />
               <TextInput
                 style={styles.inputText}
                 placeholder="Store Owner Name"
-                //   value={category_name}
-                //   onChange={e => this.setState({category_name: e.target.value})}
+                value={store_owner}
+                onChangeText={value => this.setState({store_owner: value})}
               />
               <TextInput
                 style={styles.inputText}
                 placeholder="Store Email"
-                //   value={category_name}
-                //   onChange={e => this.setState({category_name: e.target.value})}
+                value={email}
+                onChangeText={value => this.setState({email: value})}
               />
               <TouchableOpacity
                 style={styles.buttonWrapper}
-                //   onPress={() => this.props.navigation.navigate('CreateProduct')}
-              >
+                onPress={() => this.checkValues()}>
                 <Text style={styles.buttonText}> {'Create Shop'}</Text>
               </TouchableOpacity>
             </View>

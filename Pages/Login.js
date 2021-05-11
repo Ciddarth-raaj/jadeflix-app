@@ -101,9 +101,9 @@ export default class Login extends React.Component {
       // saving error
     }
     if (data.store_id == null) {
-      this.props.navigation.navigate('Orders');
+      this.props.navigation.navigate('CreateShop');
     } else {
-      this.props.navigation.navigate('CreateCategory');
+      this.props.navigation.navigate('Home');
     }
   };
 
