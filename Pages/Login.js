@@ -142,7 +142,6 @@ export default class Login extends React.Component {
                 placeholder="Phone"
                 value={phone}
                 keyboardType="numeric"
-                //   onChangeText={phone => this.updatePhone(e.target.value)}
                 onChangeText={value => this.updatePhone(value)}
               />
               {loginWithOtp && (
