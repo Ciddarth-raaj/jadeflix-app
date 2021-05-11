@@ -105,6 +105,7 @@ export default class Forgot extends React.Component {
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
+                  secureTextEntry={true}
                   value={password}
                   onChangeText={value =>
                     this.setState({

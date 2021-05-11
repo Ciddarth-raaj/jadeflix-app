@@ -34,7 +34,7 @@ export default class CreateShop extends React.Component {
     ImagePicker.launchImageLibrary(options, response => {
       console.log('response', response);
       if (response.uri) {
-        this.setState({image: response, imageFile: response});
+        this.setState({image: response, imageFile: ''});
       }
     });
   };

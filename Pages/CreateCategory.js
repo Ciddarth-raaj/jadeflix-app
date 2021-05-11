@@ -16,11 +16,17 @@ import * as ImagePicker from 'react-native-image-picker';
 import Colors from '../Constants/colors';
 import Styles from '../Constants/styles';
 
+import CategoryHelper from '../Helper/category';
+import ImageHelper from '../Helper/image';
+
 export default class CreateCategory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       image: null,
+      category_name: '',
+      imageFile: undefined,
+      // loading: false,
     };
   }
 
@@ -29,13 +35,60 @@ export default class CreateCategory extends React.Component {
     ImagePicker.launchImageLibrary(options, response => {
       console.log('response', response);
       if (response.uri) {
-        this.setState({image: response});
+        this.setState({image: response, imageFile: ''});
       }
     });
   };
 
+  checkData = async () => {
+    this.setState({loading: true});
+    const {category_name, imageFile, image} = this.state;
+
+    const alertInitText = 'Fill these fields to continue:\n';
+    let alertText = alertInitText;
+
+    if (category_name === '') {
+      alertText += '• Category Name\n';
+    }
+    if (imageFile === undefined) {
+      alertText += '• Category Image\n';
+    }
+
+    if (alertText !== alertInitText) {
+      alert(alertText);
+      return;
+    }
+
+    try {
+      const imgLink = await ImageHelper.upload(
+        imageFile,
+        category_name,
+        'category',
+      );
+
+      const data = {
+        category_name: category_name,
+        image: imgLink.remoteUrl,
+      };
+
+      CategoryHelper.create(data)
+        .then(data => {
+          alert('Category Created!');
+          window.location = '/admin/category';
+        })
+        .catch(err => {
+          console.log(err);
+          alert('Error Creating Category!');
+        })
+        .finally(() => this.setState({loading: false}));
+    } catch (err) {
+      this.setState({loading: false});
+      console.log(err);
+    }
+  };
+
   render() {
-    const {image} = this.state;
+    const {image, category_name} = this.state;
     return (
       <SafeAreaView>
         <GlobalWrapper
@@ -74,11 +127,12 @@ export default class CreateCategory extends React.Component {
               <TextInput
                 style={styles.inputText}
                 placeholder="Category Name"
-                //   value={category_name}
-                //   onChange={e => this.setState({category_name: e.target.value})}
+                value={category_name}
+                onChangeText={value => this.setState({category_name: value})}
               />
               <TouchableOpacity
                 style={styles.buttonWrapper}
+                onPress={() => this.checkData()}
                 //   onPress={() => this.props.navigation.navigate('CreateProduct')}
               >
                 <Text style={styles.buttonText}> {'Create Category'}</Text>
